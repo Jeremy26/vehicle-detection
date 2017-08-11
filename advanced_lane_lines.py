@@ -5,18 +5,13 @@ import matplotlib.image as mpimg
 import glob
 import pickle
 
-# prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
-objp = np.zeros((6*9,3), np.float32)
-objp[:,:2] = np.mgrid[0:9, 0:6].T.reshape(-1,2)
+def get_points(calibration_images):
+    # prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
+    objp = np.zeros((6*9,3), np.float32)
+    objp[:,:2] = np.mgrid[0:9, 0:6].T.reshape(-1,2)
 
-# Arrays to store object points and image points from all the images.
-objpoints = [] # 3d points in real world space
-imgpoints = [] # 2d points in image plane.
-
-# Make a list of calibration images using the Glob API
-calibration_images = glob.glob('../advanced-lane-lines/camera_cal/calibration*.jpg')
-
-def get_points():
+    objpoints = [] # 3d points in real world space
+    imgpoints = [] # 2d points in image plane.
     # Step through the list and search for chessboard corners
     for idx, fname in enumerate(calibration_images):
         image = mpimg.imread(fname)
@@ -33,9 +28,6 @@ def get_points():
             #write_name = 'corners_found'+str(idx)+'.jpg'
             #cv2.imwrite(write_name, img)
             #cv2.imshow('img', image)
-            if (idx==1):
-                plt.imshow(image)
-                plt.show()
             cv2.waitKey(500)
     return objpoints, imgpoints
 
@@ -350,7 +342,7 @@ def draw_on_lane(img, undistorted,top_down, perspective_M, left_fitx, right_fitx
     return result_img
 
 
-def pipeline(img,objpoints,imgpoints):
+def pipeline(img):
     undistorted = cal_undistort(img, objpoints, imgpoints)
     imshape = undistorted.shape
     vertices = np.array([[(0,imshape[0]),(500, 450), (700, 450), (imshape[1],imshape[0])]], dtype=np.int32)
