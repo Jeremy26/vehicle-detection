@@ -126,10 +126,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 I decided to use a linear SVC because it was advised by Udacity's course but also because it was really easy to develop, just two lines of code, and was really appropriate for the project. I chose a C value of 2.0 to have a little bit of learning on the exceptions but not too much, and a linear Kernel.
 ```
 -- Use a linear SVC 
-svc = SVC(C=2.0, kernel = 'linear')
+svc = LinearSVC()
 svc.fit(X_train, y_train)
 ```
-After training, my model returns an accuracy of 98.7% on the test set.
+After training, my model returns an accuracy of 98.8% on the test set.
 
 ### 4. Sliding Window Search & Heat Map
 
@@ -155,7 +155,7 @@ With this, we now have multiple rectangles depending on the sliding window block
 
 #### B. Pipeline Implementation
 
-In order to remove false positives on the left and to have one rectangle for the car only, we use our apply_threshold function. We send to that function the heatmap and a threshold we want to apply. I used a threshold of 1.1 by experimentation.
+In order to remove false positives on the left and to have one rectangle for the car only, we use our apply_threshold function. We send to that function the heatmap and a threshold we want to apply. I used a threshold of 1 by experimentation.
 ![alt text][image7]
 
 We then have a heatmap where the false positive are removed by thresholding.
