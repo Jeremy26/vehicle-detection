@@ -70,7 +70,7 @@ I wrote 4 functions to extract 3 kinds of features :
 ####  B. Parameters
 
 It wasn't that easy to find the rights parameters to define features. If the parameters are not well defined, we can have the wrong idea of features. Here are my parameters :
-`
+```
 color_space = 'YCrCb' # Color space
 orient = 9  # HOG orientations
 pix_per_cell = 8 # HOG pixels per cell
@@ -82,7 +82,7 @@ spatial_feat = True # Spatial features on or off
 hist_feat = True # Histogram features on or off
 hog_feat = True # HOG features on or off
 y_start_stop = [350, 656] # Min and max in y to search in slide_window()
-`
+```
 
 The first parameter is the color space. I decided to extract the features on yCrCb because I had good results with it, better than HSV. 
 ![alt text][image3]
