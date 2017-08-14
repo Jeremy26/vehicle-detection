@@ -99,36 +99,36 @@ Finally, we decide if we want to have feature extraction or not depending on the
 For training a model and teaching it to learn how to recognize a car image from a non car image, we needed the features extraction first. Features are what defined a car and a non car. We process the features extraction to both cars and non-cars images because we also want the model to learn what is not a car. We can go a little into the code to analize how training works :
 #### A. Features / Labels
 We first have two vectors in which we concatenate the features together. We associate that to every labels we already have, by labels I mean "Car" or "NotCar".
-`
+```
 -- Define the features vector
 X = np.vstack((car_features, notcar_features)).astype(np.float64)                        
 -- Define the labels vector
 y = np.hstack((np.ones(len(car_features)), np.zeros(len(notcar_features))))
-`
+```
 #### B. Normalization
 We normalize the X input to have better range and generalisation.
-`
+```
 -- Fit a per-column scaler
 X_scaler = StandardScaler().fit(X)
 -- Apply the scaler to X
 scaled_X = X_scaler.transform(X)
-`
+```
 #### C. Random Split
 We shuffle our data and split the data into Training/Test Sets. That will be used to verify our model later.
-`
+```
 -- Split up data into randomized training and test sets
 rand_state = np.random.randint(0, 100)
 X_train, X_test, y_train, y_test = train_test_split(
     scaled_X, y, test_size=0.2, random_state=rand_state)
-`
+```
 
 #### D . Classifier definition
 I decided to use a linear SVC because it was advised by Udacity's course but also because it was really easy to develop, just two lines of code, and was really appropriate for the project. I chose a C value of 2.0 to have a little bit of learning on the exceptions but not too much, and a linear Kernel.
-`
+```
 -- Use a linear SVC 
 svc = SVC(C=2.0, kernel = 'linear')
 svc.fit(X_train, y_train)
-`
+```
 After training, my model returns an accuracy of 98.7% on the test set.
 
 ### 4. Sliding Window Search & Heat Map
