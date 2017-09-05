@@ -14,7 +14,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 [image1]: ./examples/car_notcar.png
-[image2]: ./examples/car_notcar_hog.jpg
+[image2]: ./examples/car_notcar_hog.png
 [image3]: ./examples/color_spaces.png
 [image4]: ./examples/sw1.png
 [image5]: ./examples/sw2.png
